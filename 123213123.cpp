@@ -11,9 +11,9 @@ int main()
     cin >> x >> y;
     float r = sqrt(pow(x, 2) + pow(y, 2)) / pow(2, log2(x));
     float s = log(x) * tan(y);
-    cout << r << s;
+    cout << "R = " << r << ", S = " << s << endl;
     float c = max(r, s);
-    cout << c;
+    cout << "C = " << c << endl;
     cin.get();
     return 0;
 }
