@@ -94,13 +94,13 @@ void UpdateGameScene(void* pData, GameView& view, float deltaSec)
 
     if (!collision)
     {
-        player.sprite.move(movement); // двигаем, если нет столкновения
+        player.sprite.move(movement);
         player.rect.left += movement.x;
         player.rect.top += movement.y;
     }
     else
     {
-        player.sprite.setPosition(oldPosition); // откатываем в исходное положение
+        player.sprite.setPosition(oldPosition);
     }
 
     for (auto it = pLogic->coins.begin(); it != pLogic->coins.end();) {
