@@ -46,11 +46,13 @@ auto measure_execution_time(Func&& func, Args&&... args) {
     auto result = func(std::forward<Args>(args)...);  // Выполняем переданную функцию с аргументами
     auto end_time = std::chrono::high_resolution_clock::now();  // Останавливаем отсчет времени
 
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);  // Вычисляем продолжительность в миллисекундах
-    return std::make_pair(result, duration.count());  // Возвращаем результат и время выполнения
+    auto duration_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+    double duration_ms = duration_ns / 1000000.0;
+    return std::make_pair(result, duration_ms);
 }
 
 int main() {
+    setlocale(LC_ALL, "Russian");
     int size = 10000;
     int num_threads = 8;
     std::vector<int> arr(size);
@@ -72,4 +74,6 @@ int main() {
         arr_par, num_threads
     );
     cout << "Параллельная быстрая сортировка (параллельная): " << time_par << " мс" << endl;
+    std::cin.get();
+    return 0;
 }
